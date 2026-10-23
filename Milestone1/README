@@ -1,256 +1,56 @@
 # 🔐 Infosys Portal — Secure Authentication Web Application
 
-A secure, user-friendly authentication web application built with **Python and Streamlit**. The project provides user registration, login, password recovery through email OTP verification or security questions, and secure password storage using bcrypt. It demonstrates essential authentication workflows, database management, input validation, and email-based verification in a web application.
-
-
-## ✨ Features
-
-### 🔑 Authentication
-- User registration with username and email.
-- Login using either username or email address.
-- Secure password hashing using bcrypt.
-- Password and confirm-password validation.
-- Authenticated home page displaying account details.
-- Sign-out functionality.
-
-### 🔄 Password Recovery
-- Forgot-password functionality.
-- Password recovery using a registered email and security question.
-- Email-based password reset using a six-digit OTP.
-- OTP expiration after five minutes.
-- Thirty-second OTP resend cooldown.
-- Maximum of five OTP verification attempts.
-- OTP hashing before storing it in the Streamlit session.
-- New password confirmation and validation.
-
-### 🛡️ Input Validation
-- Minimum password length of eight characters.
-- Uppercase, lowercase, number, and special-character requirements.
-- Rejection of whitespace in passwords.
-- Username length validation.
-- Email format validation.
-- Security answer length validation.
-
-### 🎨 User Interface
-- Clean blue-and-white interface.
-- Responsive layout using Streamlit.
-- Custom CSS styling.
-- Separate login, signup, and password recovery pages.
-- HTML-formatted password reset email.
-
-## 📸 Application Screenshots
-
-## 📸 Application Screenshots
-
-| Account Creation | Login Page |
-|---|---|
-| ![Account Creation](Milestone1/images/Account%20Create.png) | ![Login Page](Milestone1/images/Login%20Page.png) |
-
-| Password Recovery Options | Security Code Verification |
-|---|---|
-| ![Password Recovery Options](Milestone1/images/Reset%20Password%20-Via%20security%20code%20and%20otp.png) | ![Security Code Verification](Milestone1/images/Verify%20email%20(security%20code%20).png) |
-
-| Email OTP Verification | Reset Password |
-|---|---|
-| ![Email OTP Verification](Milestone1/images/Verify%20Email%20(OTP).png) | ![Reset Password](Milestone1/images/Reset%20Password.png) |
-
-
-
-
-### Demo workflow
-
-1. Create an account with a username, email, password, and security question.
-2. Sign in using your username or email.
-3. Open **Forgot Password?** on the login page.
-4. Select security-question verification or email OTP verification.
-5. Verify your identity and set a new password.
-6. Sign in using your updated credentials.
-
-## 🛠️ Technologies Used
-
-| Technology | Purpose |
-|---|---|
-| Python | Application logic and backend processing |
-| Streamlit | Web interface and session management |
-| SQLite | User account database |
-| bcrypt | Password and security-answer hashing |
-| hashlib | SHA-256 digest generation for OTPs and security answers |
-| smtplib | Sending emails through SMTP |
-| Python `email` package | Constructing plain-text and HTML emails |
-| HTML and CSS | Email templates and user interface styling |
-| `secrets` | Cryptographically secure OTP generation |
-| `re` | Input and password validation |
-| Git and GitHub | Version control and project hosting |
-
-## 💻 Installation and Usage
-
-### Prerequisites
-
-Install the following before running the project:
-
-- Python 3.10 or a compatible newer version.
-- pip, Python's package installer.
-- A Gmail account if you want to test email OTP delivery.
-- A Google App Password for Gmail SMTP authentication.
-
-### 1. Clone the repository
-
-
-```bash
-git clone https://github.com/BordeShruti/infosys-franchise-ai
-cd Milestone1
-```
-
-### 2. Create a virtual environment
-
-**Windows PowerShell:**
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
-If PowerShell blocks activation, you can run the virtual environment's Python directly:
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install --upgrade pip
-```
-
-### 3. Install dependencies
-
-Create a `requirements.txt` file containing:
-
-```text
-streamlit
-bcrypt
-```
-
-Install the dependencies:
-
-```powershell
-python -m pip install -r requirements.txt
-```
-
-The remaining imported modules, including `sqlite3`, `hashlib`, `smtplib`, `secrets`, and `email`, are included with Python's standard library.
-
-### 4. Configure email OTP
-
-Email OTP functionality requires SMTP credentials. For Gmail, enable two-step verification and create a Google App Password.
-
-Set the following environment variables in PowerShell:
-
-```powershell
-$env:SMTP_HOST="smtp.gmail.com"
-$env:SMTP_PORT="587"
-$env:SMTP_USER="your-email@gmail.com"
-$env:SMTP_PASSWORD="your-16-character-app-password"
-$env:SMTP_FROM="your-email@gmail.com"
-```
-
-
-### 5. Run the application
-
-
-```powershell
-streamlit run app.py
-```
-
-
-```text
-http://localhost:8501
-```
-
-Open that address in your browser.
-
-### 6. Database initialization
-
-The application automatically creates `infosys_portal.db` when it starts if the database does not already exist. The `users` table stores registered usernames, email addresses, password hashes, security questions, and security-answer hashes.
-
-**Note:** The SQLite database is created in the application's current working directory. Do not upload a database containing real user information to a public repository.
-
-## 📂 Project Structure and Architecture
-
-A recommended repository structure is:
-
-```text
-Infosys-Portal/
-│
-├── app.py
-├── requirements.txt
-├── README.md
-├── .gitignore
-│
-└── screenshots/
-    ├── login.png
-    ├── signup.png
-    ├── forgot-password.png
-    ├── otp-verification.png
-    ├── reset-password.png
-    └── dashboard.png
-```
-
-
-
-
-### Application architecture
-
-```text
-                 User / Web Browser
-                         |
-                         v
-                 Streamlit Interface
-                         |
-             +-----------+-----------+
-             |                       |
-             v                       v
-      Login / Signup          Password Recovery
-             |                       |
-             v                 +-----+------+
-      Authentication          |            |
-             |                v            v
-             v           Security       Email OTP
-        SQLite DB         Question       Verification
-             |                |            |
-             |                +-----+------+
-             |                      |
-             |                      v
-             |               Reset Password
-             |                      |
-             +----------------------+
-                         |
-                         v
-                 Updated Password Hash
-```
-
-### Password recovery flow
-
-1. The user enters their registered email address.
-2. The application retrieves the corresponding security question or generates an OTP.
-3. For OTP recovery, the application sends a six-digit code through SMTP and stores its SHA-256 hash in session state.
-4. The user verifies their identity using the selected recovery method.
-5. The application validates the new password and updates its bcrypt hash in SQLite.
-
-## 🔒 Security
-
-The application implements several basic security measures.
-
-| Security measure | Implementation |
-|---|---|
-| Password storage | bcrypt password hashing |
-| Security-answer storage | Normalization, SHA-256 digest, and bcrypt hashing |
-| OTP generation | Python's `secrets` module |
-| OTP storage | SHA-256 hash rather than the original OTP |
-| OTP expiration | Five-minute validity period |
-| OTP attempts | Maximum of five verification attempts per active OTP |
-| OTP resend | Thirty-second cooldown per Streamlit session |
-| Password validation | Length, character-class, whitespace, and byte-length checks |
-| SQL operations | Parameterized SQLite queries |
-| HTML output | Escaped dynamic page headings |
-| SMTP credentials | Environment variables |
-
-
-
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python" />
+  <img src="https://img.shields.io/badge/Streamlit-1.35-red?style=for-the-badge&logo=streamlit" />
+  <img src="https://img.shields.io/badge/Security-bcrypt-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
+</p>
+
+> **Internship Project | Infosys Springboard**
+> A secure, modern authentication system with Email OTP + Security Questions built in Streamlit.
 
 ---
 
-**If you find this project useful, consider giving the repository a ⭐ on GitHub.**
+### 📸 Live Demo Screenshots
+
+| Login Page | Create Account |
+| :---: | :---: |
+| ![Login](images/login.png) | ![Signup](images/signup.png) |
+
+| Forgot Password | OTP Verification | Security Question |
+| :---: | :---: | :---: |
+| ![Forgot](images/forgot.png) | ![OTP](images/otp.png) | ![Security](images/security.png) |
+
+### ✨ Features
+
+#### 🔑 Authentication
+- User registration with username & email validation
+- Login using either username or email address
+- Secure password hashing using `bcrypt`
+- Password strength validation (8+ chars, upper/lower, number, special char)
+- Authenticated dashboard displaying account details
+- Sign-out functionality with session management
+
+#### 🔄 Password Recovery (Dual Method)
+- **Method 1:** Via Security Question (e.g., What is your pet's name?)
+- **Method 2:** Via 6-digit Email OTP
+- OTP expiration after 5 minutes
+- 30-second OTP resend cooldown
+- Maximum 5 OTP verification attempts
+- Secure OTP hashing before storing in session
+
+#### 🛡️ Security
+- Bcrypt password hashing
+- SQL Injection protected queries
+- Email format validation with Regex
+- Session state management
+
+### 🛠️ Tech Stack
+- **Frontend:** Streamlit + Custom CSS (Infosys Blue Theme #007CC3)
+- **Backend:** Python 3.9+
+- **Database:** SQLite3
+- **Security:** bcrypt, hashlib, secrets
+- **Email Service:** smtplib (Gmail SMTP)
+
+### 📁 Project Structure
