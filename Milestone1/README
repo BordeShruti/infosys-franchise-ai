@@ -1,0 +1,13 @@
+python --version
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install streamlit streamlit-option-menu PyJWT bcrypt plotly
+python -m streamlit --version
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+python -c "import secrets; print(secrets.token_hex(32))"
+   9fab8a72afa87ccfa1ceef8836f426ed1b9cb528f44396533f126b6f625ad841
+
+
+mxty uitz qhxj unwr
