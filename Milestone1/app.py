@@ -1,4 +1,3 @@
-
 import re
 import sqlite3
 import hashlib
@@ -15,9 +14,7 @@ import bcrypt
 import streamlit as st
 
 
-# =========================================================
-# PAGE CONFIGURATION
-# =========================================================
+
 st.set_page_config(
     page_title="Infosys Portal | Secure Access",
     page_icon="🔐",
@@ -32,9 +29,7 @@ OTP_RESEND_COOLDOWN = 30
 OTP_MAX_ATTEMPTS = 5
 
 
-# =========================================================
-# DATABASE
-# =========================================================
+
 def get_connection():
     return sqlite3.connect(DB_NAME, timeout=10)
 
@@ -71,9 +66,6 @@ def init_db():
         conn.commit()
 
 
-# =========================================================
-# PASSWORD HELPERS
-# =========================================================
 def hash_password(password):
     return bcrypt.hashpw(
         password.encode("utf-8"),
@@ -106,9 +98,7 @@ def validate_password(password):
     return True, "Password meets all requirements."
 
 
-# =========================================================
-# SECURITY ANSWER HELPERS
-# =========================================================
+
 def hash_security_answer(answer):
     normalized = answer.strip().casefold().encode("utf-8")
     digest = hashlib.sha256(normalized).digest()
@@ -135,9 +125,7 @@ def verify_security_answer_hash(answer, stored_hash):
         return False
 
 
-# =========================================================
-# EMAIL OTP — SEND EMAIL
-# =========================================================
+
 def send_otp_email(email, otp):
     smtp_host = os.getenv(
         "SMTP_HOST", "smtp.gmail.com"
@@ -369,9 +357,7 @@ Infosys Portal Security Team
             "and verify your SMTP settings."
         )
 
-# =========================================================
-# EMAIL OTP — CREATE AND STORE OTP HASH
-# =========================================================
+
 def create_and_send_otp(email):
     now = time.time()
     last_sent = st.session_state.get("otp_last_sent_at", 0)
@@ -405,9 +391,7 @@ def create_and_send_otp(email):
     return True, message
 
 
-# =========================================================
-# EMAIL OTP — VERIFY OTP
-# =========================================================
+
 def verify_email_otp(entered_otp):
     otp_hash = st.session_state.get("otp_hash")
     created_at = st.session_state.get("otp_created_at", 0)
@@ -441,9 +425,6 @@ def verify_email_otp(entered_otp):
     return False, "Incorrect OTP. Please try again."
 
 
-# =========================================================
-# USER FUNCTIONS
-# =========================================================
 def create_user(username, email, password, question, answer):
     password_hash = hash_password(password)
     answer_hash = hash_security_answer(answer)
@@ -545,9 +526,7 @@ def update_password(email, new_password):
         return cursor.rowcount > 0
 
 
-# =========================================================
-# INITIALIZATION
-# =========================================================
+
 init_db()
 
 DEFAULT_STATE = {
@@ -569,9 +548,7 @@ for key, value in DEFAULT_STATE.items():
         st.session_state[key] = value
 
 
-# =========================================================
-# CSS — BLUE AND WHITE PORTAL DESIGN
-# =========================================================
+
 st.markdown("""
 <style>
     .stApp {
@@ -712,9 +689,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# =========================================================
-# REUSABLE UI
-# =========================================================
+
 def render_brand():
     st.markdown("""
         <div class="brand">
@@ -764,16 +739,11 @@ def show_footer():
     """, unsafe_allow_html=True)
 
 
-# =========================================================
-# BRAND HEADER
-# =========================================================
+
 render_brand()
 show_flash_message()
 
 
-# =========================================================
-# AUTHENTICATED HOME PAGE
-# =========================================================
 if st.session_state.user:
     user = st.session_state.user
 
@@ -808,9 +778,7 @@ if st.session_state.user:
         st.rerun()
 
 
-# =========================================================
-# SIGNUP PAGE
-# =========================================================
+
 elif st.session_state.auth_view == "signup":
     render_heading(
         "Create your account",
@@ -1144,9 +1112,7 @@ elif st.session_state.auth_view == "otp_verify":
             go_to("login")
 
 
-# =========================================================
-# FORGOT PASSWORD — SECURITY QUESTION
-# =========================================================
+
 elif st.session_state.auth_view == "security_verify":
     render_heading(
         "Verify your identity",
@@ -1194,9 +1160,6 @@ elif st.session_state.auth_view == "security_verify":
         go_to("forgot")
 
 
-# =========================================================
-# FORGOT PASSWORD — SET NEW PASSWORD
-# =========================================================
 elif st.session_state.auth_view == "reset_password":
     if (
         not st.session_state.reset_verified
@@ -1269,7 +1232,5 @@ elif st.session_state.auth_view == "reset_password":
         go_to("login")
 
 
-# =========================================================
-# FOOTER
-# =========================================================
+
 show_footer()
