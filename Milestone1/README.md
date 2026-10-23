@@ -34,28 +34,30 @@ A secure, user-friendly authentication web application built using Python and St
 | Google Colab | Notebook-based development |
 | Git and GitHub | Version control and project hosting |
 
-## 📸 Application Screenshots
+## 📸 Project Screenshots
 
-### Login Page
-![Login Page](Milestone1/images/Login%20Page.png)
+### 1. Login Page
+![Login Page](https://raw.githubusercontent.com/BordeShruti/infosys-franchise-ai/main/Milestone1/images/Login%20Page.png)
 
-### Account Creation
-![Account Creation](Milestone1/images/Account%20Create.png)
+### 2. Account Creation
+![Account Create](https://raw.githubusercontent.com/BordeShruti/infosys-franchise-ai/main/Milestone1/images/Account%20Create.png)
 
-### Password Recovery
-![Password Recovery](Milestone1/images/Reset%20Password%20-Via%20security%20code%20and%20otp.png)
+### 3. Password Recovery
+![Password Recovery](https://raw.githubusercontent.com/BordeShruti/infosys-franchise-ai/main/Milestone1/images/Reset%20Password%20-Via%20security%20code%20and%20otp.png)
 
-### Security Code Verification
-![Verify OTP (Security Code)](Milestone1/images/Verify%20OTP%20(security%20code).png)
+### 4. Security Code Verification
+![Security Code Verification](https://raw.githubusercontent.com/BordeShruti/infosys-franchise-ai/main/Milestone1/images/Verify%20OTP%20%28security%20code%29.png)
 
-### Email OTP Verification
-![Email OTP Verification](Milestone1/images/Verify%20Email%20(OTP).png)
+### 5. Email OTP Verification
+![Email OTP Verification](https://raw.githubusercontent.com/BordeShruti/infosys-franchise-ai/main/Milestone1/images/Verify%20Email%20%28OTP%29.png)
 
-### OTP Email
-![OTP on Email](Milestone1/images/OTP%20on%20email.png)
+### 6. OTP Email
+![OTP on Email](https://raw.githubusercontent.com/BordeShruti/infosys-franchise-ai/main/Milestone1/images/OTP%20on%20email.png)
 
-### Reset Password
-![Reset Password](Milestone1/images/Reset%20Password.png)
+### 7. Reset Password
+![Reset Password](https://raw.githubusercontent.com/BordeShruti/infosys-franchise-ai/main/Milestone1/images/Reset%20Password.png)
+
+
 
 ## ⚙️ Setup and Execution
 
