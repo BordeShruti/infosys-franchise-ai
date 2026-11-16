@@ -171,14 +171,20 @@ Milestone 3 aims to deliver an enhanced FranchiseOps AI platform with an expande
 
 | Team Member | Contributions |
 |---|---|
-| **Palak** | AI Copilot,PPT |
+| **Palak Agrawal** | AI Copilot,PPT |
 | **Nuthi Sathwika** | RAG integration,Agents simulator|
 | **Pullaiahgari Lahari** | taught questions for AI Copilot  |
 | **Shruthi Borde** |project integration ,git|
 |**Paramashivam**|- |
 ---
 
-**Project:** FranchiseOps AI  
-**Program:** Infosys Springboard Internship  
-**Milestone:** 3  
+<div align="center">
+
+## 💙 FranchiseOps AI
+
+**Built as part of Infosys Springboard Internship 7.0**
+
+*Transforming franchise operations through secure access, intelligent automation and data-driven insights.*
+
+</div>
 
