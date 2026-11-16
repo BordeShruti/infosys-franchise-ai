@@ -226,18 +226,18 @@ HTTP/1.1 403 Forbidden
 
 ### UI
 - `Login Page`
-![alt text](Milestone2/image-5.png)
+![alt text](image-5.png)
 - `Admin Dashboard`
-![alt text](<Milestone2/Screenshot 2026-11-03 182636 (1).png>)
+![alt text](<Screenshot 2026-11-03 182636 (1).png>)
 - `Individual Agents Analysis`
-![alt text](<Milestone2/Screenshot 2026-11-03 182646 (1).png>)
-![alt text](<Milestone2/Screenshot 2026-11-03 182655 (1).png>)
-![alt text](<Milestone2/Screenshot 2026-11-03 182707 (1).png>) 
-![alt text](<Milestone2/Screenshot 2026-11-03 182719 (1).png>) 
-![alt text](<Milestone2/Screenshot 2026-11-03 182729 (1).png>)
+![alt text](<Screenshot 2026-11-03 182646 (1).png>)
+![alt text](<Screenshot 2026-11-03 182655 (1).png>)
+![alt text](<Screenshot 2026-11-03 182707 (1).png>) 
+![alt text](<Screenshot 2026-11-03 182719 (1).png>) 
+![alt text](<Screenshot 2026-11-03 182729 (1).png>)
 
 - `Profile`
-![alt text](Milestone2/image-4.png)
+![alt text](image-4.png)
 ### Role Descriptions
 
 **1. Admin – Platform Administrator**
